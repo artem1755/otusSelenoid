@@ -1,0 +1,59 @@
+---
+- name: Create browser.json
+  template:
+    src: ./templates/browsers.json.j2
+    dest: /root/selenoid_otus
+  vars:
+    default_chrome_version: 128.0
+    chrome_browsers: [ "\"128.0\": {
+      \"image\": \"selenoid/vnc:chrome_128.0\",
+      \"port\": \"4444\",
+      \"path\": \"/\"}, 
+      \"127.0\": {
+      \"image\": \"selenoid/vnc:chrome_127.0\",
+      \"port\": \"4444\",
+      \"path\": \"/\"}"]
+
+- name: Create docker compose.yaml
+  template:
+    src: ./templates/docker-compose.yaml.j2
+    dest: /root/selenoid_otus
+
+- name: Create grid_router folder
+  file:
+    path: /root/selenoid_otus/grid-router
+    state: directory
+    mode: '0666'
+
+- name: Create users.httpasswd
+  template:
+    src: ./templates/users.httpasswd.j2
+    dest: /root/selenoid_otus/ggr/grid-router/users.httpasswd
+  vars:
+    user: root
+
+- name: Create quota dir for ggr
+  file:
+    path: /root/selenoid_otus/ggr/grid-router/quota
+    state: directory
+    mode: '0666'
+
+-  name: Create ggr balancer rules
+   template:
+     src: ./templates/test.xml.j2
+     dest: /root/selenoid_otus/ggr/grid-router/quota/test.xml
+
+- name: Create nginx folder
+  file:
+    path: /root/selenoid_otus/ngins
+    state: directory
+    mode: '0666'
+
+- name: Create nginx selenoid.conf
+  template:
+    src: ./templates/selenoid.conf.j2
+    dest: /root/selenoid_otus/nginx/selenoid.conf
+  vars:
+    nginx_port: 80
+    selenoid_ui: 8080
+    ggr_port: 4444
