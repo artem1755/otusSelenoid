@@ -1,0 +1,57 @@
+---
+- name: Delete old docker keys
+  file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - /etc/apt/keyrings/docker.asc
+    - /etc/apt/sources.list.d/download_docker_com_linux_ubuntu.list
+
+- name: Update cache
+  apt:
+    update_cache: yes
+
+- name: Add docker gpg key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Add docker repo
+  apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+    state: present
+
+- name: Install docker packages
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
+
+- name: Start/enable docker service
+  service:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: Add user to docker group
+  user:
+    name: "{{ ansible_user_id }}"
+    groups: docker
+    append: yes
+
+- name: Change docker sock permissions
+  file:
+    path: /var/run/docker.sock
+    state: file
+    mode: '0666'
+
+- name: Create selenoid networks
+  docker_networks:
+    name: "{{ items }}"
+    state: present
+  loop:
+    - selenoid1
+    - selenoid2

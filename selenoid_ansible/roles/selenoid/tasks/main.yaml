@@ -1,0 +1,12 @@
+---
+- name: Create selenoid workdir
+  file:
+    path: /root/selenoid_pro
+    state: directory
+    mode: '0666'
+
+- name: Running selenoid
+  shell: docker-compose up -d
+  become: true
+  args:
+    chdir: /root/selenoid_pro
