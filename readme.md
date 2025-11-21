@@ -1,0 +1,1 @@
+ansible_playbook -i ./hosts selenoid_playbook.yaml
