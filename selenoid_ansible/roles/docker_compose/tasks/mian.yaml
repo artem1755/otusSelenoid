@@ -1,5 +1,0 @@
----
-- name: Install docker-compose
-  shell:  |
-    sudo curl -SL https://github.com/docker/compose/releases/download/v2.40.3/docker-compose-linux-x86_64 -o /user/local/bin/docker-compose
-    chmod +x /user/local/bin/docker-compose

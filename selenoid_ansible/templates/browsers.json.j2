@@ -2,17 +2,17 @@
   "chrome": {
     "default": "{{ default_chrome_version }}",
     "versions": {
-        {% for brw_version in chrome_browsers %}
-            {{ brw }}
-        {% endfor %}
+      {% for version, data in chrome_browsers.items() %}
+      "{{ version }}": {
+        "image": "{{ data.image }}",
+        "port": "{{ data.port }}",
+        "path": "{{ data.path }}"
+      }{% if not loop.last %},{% endif %}
+      {% endfor %}
     }
   },
-    "firefox": {
-      "default": "{{ default_firefox_version }}",
-      "versions": {
-          {% for brw_version in firefox_browsers %}
-              {{ brw }}
-          {% endfor %}
-      }
-    }
+  "firefox": {
+    "default": "{{ default_firefox_version }}",
+    "versions": {}
+  }
 }

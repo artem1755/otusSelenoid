@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<browsers xmlns="urn:config.gridrouter.qatools.ru">
+  <browser name="chrome" defaultVersion="{{ chrome_versions[0] }}">
+    {% for version in chrome_versions %}
+    <version number="{{ version }}">
+      <region name="1">
+        {% for host in selenoid_hosts %}
+        <host name="{{ host }}" port="4444" count="1"/>
+        {% endfor %}
+      </region>
+    </version>
+    {% endfor %}
+  </browser>
+</browsers>

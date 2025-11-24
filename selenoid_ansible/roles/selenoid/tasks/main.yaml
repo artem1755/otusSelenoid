@@ -6,7 +6,6 @@
     mode: '0666'
 
 - name: Running selenoid
-  shell: docker-compose up -d
-  become: true
+  command: /usr/local/bin/docker-compose up -d
   args:
-    chdir: /root/selenoid_pro
+    chdir: /root/selenoid_otus

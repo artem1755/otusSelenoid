@@ -49,8 +49,9 @@
     mode: '0666'
 
 - name: Create selenoid networks
-  shell: |
-    docker network create "{{ item }}"
+  docker_network:
+    name: "{{ item }}"
+    state: present
   loop:
     - selenoid1
     - selenoid2

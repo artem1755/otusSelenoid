@@ -12,7 +12,7 @@ services:
       - DOCKER_API_VERSION=1.49
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./local/browser.json:/etc/selenoid/browsers.json:ro
+      - /root/selenoid_otus/browsers.json:/etc/selenoid/browsers.json:ro
       - ./logs/selenoid1:/opt/selenoid/logs
     shm_size: 2g
     command: [
@@ -35,7 +35,7 @@ services:
       - DOCKER_API_VERSION=1.49
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./local/browser.json:/etc/selenoid/browsers.json:ro
+      - /root/selenoid_otus/browsers.json:/etc/selenoid/browsers.json:ro
       - ./logs/selenoid2:/opt/selenoid/logs
     shm_size: 2g
     command: [
@@ -56,7 +56,7 @@ services:
       - selenoid1
       - selenoid2
     volumes:
-      - ./local/grid-router:/etc/grid-router:ro
+      - /root/selenoid_otus/ggr/grid-router:/etc/grid-router:ro
     command: [
       "-guests-allowed",
       "-guests-quota", "artemn",
@@ -76,7 +76,7 @@ services:
     ports:
       - "8888:8888"
     volumes:
-      - ./local/grid-router:/etc/grid-router:ro
+      - /root/selenoid_otus/ggr/grid-router:/etc/grid-router:ro
     networks:
       - selenoid_net1
       - selenoid_net2
@@ -101,7 +101,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./local/nginx:/etc/nginx/conf.d:ro
+      - /root/selenoid_otus/nginx/selenoid.conf:/etc/nginx/conf.d/selenoid.conf:ro
     networks:
       - selenoid_net1
 
