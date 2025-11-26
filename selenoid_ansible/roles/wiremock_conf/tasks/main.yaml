@@ -1,0 +1,25 @@
+---
+- name: Create folder with stubs
+  file:
+    path: "/home/{{ username }}/wiremock/stubs"
+    state: directory
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0666'
+
+- name: Rendering stub template
+  template:
+    src: "../../templates/wm/{{ item }}"
+    dest: "/home/{{ username }}/wiremock/stubs/{{ item }}"
+  loop:
+    - get_user.json
+    - user_score.json
+    - course_get_all.json
+#    - user_soap.json
+
+#- name: Create wiremock networks
+#  docker_network:
+#    name: "{{ item }}"
+#    state: present
+#  loop:
+#    - wiremock

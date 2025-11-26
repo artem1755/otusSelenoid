@@ -1,0 +1,23 @@
+{
+  "mappings": [
+    {
+      "priority": 1,
+      "request": {
+        "method": "GET",
+        "url": "/api/user/2"
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "name": "Test user",
+          "cource": "QA",
+          "email": "test@test.test",
+          "age": 23
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    }
+  ]
+}

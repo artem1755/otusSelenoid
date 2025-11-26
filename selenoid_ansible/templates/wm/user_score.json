@@ -1,0 +1,21 @@
+{
+  "mappings": [
+    {
+      "priority": 1,
+      "request": {
+        "method": "GET",
+        "url": "/api/score/1"
+      },
+      "response": {
+        "status": 200,
+        "jsonBody": {
+          "name": "Test user",
+          "score": 78
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    }
+  ]
+}

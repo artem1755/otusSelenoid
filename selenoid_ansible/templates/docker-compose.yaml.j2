@@ -104,9 +104,26 @@ services:
       - /root/selenoid_otus/nginx/selenoid.conf:/etc/nginx/conf.d/selenoid.conf:ro
     networks:
       - selenoid_net1
+      - wiremock
+
+  wiremock:
+    image: wiremock/wiremock:2.35.0
+    container_name: otus-wiremock
+    ports:
+      - "8066:8080"
+    volumes:
+      - /home/root/wiremock/stubs:/home/wiremock/mappings
+    command:
+      - --global-response-templating
+      - --enable-stub-cors
+    restart: unless-stopped
+    networks:
+      -  wiremock
 
 networks:
   selenoid_net1:
     name: selenoid_net1
   selenoid_net2:
     name: selenoid_net2
+  wiremock:
+    name: wiremock

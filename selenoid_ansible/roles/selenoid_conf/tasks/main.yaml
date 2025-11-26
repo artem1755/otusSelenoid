@@ -28,12 +28,6 @@
     src: ../../templates/docker-compose.yaml.j2
     dest: /root/selenoid_otus/docker-compose.yaml
 
-#- name: Create grid_router folder
-#  file:
-#    path: /root/selenoid_otus/grid-router
-#    state: directory
-#    mode: '0666'
-
 - name: Create ggr/grid-router folder
   file:
     path: /root/selenoid_otus/ggr/grid-router
