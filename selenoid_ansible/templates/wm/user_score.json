@@ -8,10 +8,13 @@
       },
       "response": {
         "status": 200,
-        "jsonBody": {
-          "name": "Test user",
-          "score": 78
-        },
+        "jsonBody": [
+          {
+            "name": "Test user",
+            "score": 78,
+            "id": 1
+          }
+        ],
         "headers": {
           "Content-Type": "application/json"
         }

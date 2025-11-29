@@ -15,7 +15,7 @@
     - get_user.json
     - user_score.json
     - course_get_all.json
-#    - user_soap.json
+    - user_soap.json
 
 #- name: Create wiremock networks
 #  docker_network:

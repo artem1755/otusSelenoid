@@ -8,12 +8,15 @@
       },
       "response": {
         "status": 200,
-        "jsonBody": {
-          "name": "Test user",
-          "cource": "QA",
-          "email": "test@test.test",
-          "age": 23
-        },
+        "jsonBody": [
+          {
+            "name": "Test user",
+            "cource": "QA",
+            "email": "test@test.test",
+            "age": 23,
+            "id": 2
+          }
+        ],
         "headers": {
           "Content-Type": "application/json"
         }
