@@ -1,23 +1,14 @@
 package ru.sb.model;
 
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder
 public class UserModel {
+  private int id;
   private String name;
   private String cource;
   private String email;
   private int age;
-  private int id;
-
-  public UserModel() {
-  }
-
-  public UserModel(int id,String name, String cource, String email, int age) {
-    this.name = name;
-    this.cource = cource;
-    this.email = email;
-    this.age = age;
-    this.id = id;
-  }
 }

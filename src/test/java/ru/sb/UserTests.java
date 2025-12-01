@@ -34,4 +34,13 @@ public class UserTests {
       softly.assertThat(userScoreModel.getScore()).isEqualTo(78);
     });
   }
+
+  @Test
+  void checkUserSoap(){
+    UserModel userModel = userService.getUserByIdSoap(1);
+
+    assertSoftly(softly -> {
+      softly.assertThat(userModel.getCource()).isEqualTo("Java");
+    });
+  }
 }

@@ -15,7 +15,7 @@ public class UserService extends AbsBaseService {
   public UserModel getUserById(int id){
      Response response = RestAssured.given(requestSpecification())
             .when()
-            .get("/user/" + id);
+            .get("/api/user/" + id);
 
      return userHelper.extractResultFromArray(response, UserModel.class)
              .stream()
@@ -25,11 +25,21 @@ public class UserService extends AbsBaseService {
   public UserScoreModel getUserScoreById(int id){
     Response response = RestAssured.given(requestSpecification())
             .when()
-            .get("/score/" + id);
+            .get("/api/score/" + id);
 
     return userHelper.extractResultFromArray(response, UserScoreModel.class)
             .stream()
             .filter((UserScoreModel userScoreModel) -> userScoreModel.getId() == id).findFirst().get();
+  }
+
+  public UserModel getUserByIdSoap(int id){
+    Response response = RestAssured.given(requestSpecification())
+            .when()
+            .header("Content-Type","text/xml")
+            .header("SOAPAction","getUser")
+            .post("/soap/users");
+
+    return null;
   }
 
 }

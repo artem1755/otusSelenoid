@@ -17,7 +17,8 @@ public abstract class AbsBaseService {
     RestAssured.defaultParser = Parser.JSON;
     return RestAssured.given()
             .baseUri("http://185.251.89.34:8066")
-            .basePath("/api");
+//            .basePath("/api")
+            ;
   }
 
   protected ResponseSpecification responseSpecification(){

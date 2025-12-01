@@ -1,23 +1,19 @@
 {
   "request": {
     "method": "POST",
-    "url": "/soap/user",
+    "url": "/soap/users",
     "headers": {
       "Content-Type": {
         "matches": ".*text/xml.*"
       }
-    },
-    "bodyPatterns": [
-      {
-        "contains": "<soapenv:Body>"
-      }
-    ]
+    }
   },
   "response": {
     "status": 200,
     "headers": {
       "Content-Type": "text/xml; charset=UTF-8"
     },
-    "body": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><ns2:getUserResponse xmlns:ns2=\"http://example.com/\"><return><id>123</id><name>John</name></return></ns2:getUserResponse></soapenv:Body></soapenv:Envelope>"
+    "body": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><getUserResponse><return><id>1</id><name>John</name><cource>Java</cource><email>john@example.com</email><age>25</age></return><return><id>2</id><name>Anna</name><cource>QA</cource><email>anna@example.com</email><age>30</age></return><return><id>3</id><name>David</name><cource>Java QA</cource><email>david@example.com</email><age>22</age></return></getUserResponse></soapenv:Body></soapenv:Envelope>"
+
   }
 }
